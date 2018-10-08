@@ -1,24 +1,30 @@
-# README
+# kassis_soda
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+資料管理システム
 
-Things you may want to cover:
+## 必要なソフトウェア
 
-* Ruby version
+- Linux か Mac OS X
+- Ruby 2.5
+- Elasticsearch 6.4
+- RabbitMQ 3.7
+- PostgreSQL 9
+- Redis
+- kassis_fileprocessor
 
-* System dependencies
+## 開発環境構築(Mac OS X)
 
-* Configuration
+```
+rbenv install 2.5.1
+brew install elasticsearch
+brew install rabitmq
+brew install postgresql@9.6
+brew install redis
+```
 
-* Database creation
 
-* Database initialization
+## 製作者・貢献者 (Authors and contributors)
+- [Akifumi NAKAMURA](https://github.com/nakamura-akifumi) ([@tmpz84](https://twitter.com/tmpz84))
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+MIT
