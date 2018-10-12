@@ -12,6 +12,11 @@
 - Redis
 - kassis_fileprocessor
 
+## その他ライブラリ
+
+- Cheetah Grid 
+https://github.com/future-architect/cheetah-grid
+
 ## 開発環境構築(Mac OS X)
 
 ```
@@ -20,6 +25,7 @@ brew install elasticsearch
 brew install rabitmq
 brew install postgresql@9.6
 brew install redis
+brew install kotlin
 ```
 
 
