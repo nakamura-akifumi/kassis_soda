@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :holes
   devise_for :users
   resources :users
   get 'home/index'

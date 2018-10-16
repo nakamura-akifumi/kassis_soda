@@ -16,6 +16,8 @@
 
 - Cheetah Grid 
 https://github.com/future-architect/cheetah-grid
+- vanilla-autokana
+https://github.com/ryo-utsunomiya/vanilla-autokana
 
 ## 開発環境構築(Mac OS X)
 

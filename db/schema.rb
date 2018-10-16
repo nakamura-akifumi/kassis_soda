@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_125141) do
+ActiveRecord::Schema.define(version: 2018_10_12_144341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "holes", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_contacts", force: :cascade do |t|
     t.bigint "user_id_id"
@@ -25,7 +32,7 @@ ActiveRecord::Schema.define(version: 2018_10_10_125141) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
-    t.string "email", default: ""
+    t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -1,2 +1,7 @@
-<h1>User#new</h1>
-<p>Find me in app/views/user/new.html.erb</p>
+<div class="container-fluid">
+<h1>利用者情報の新規作成</h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Back', users_path %>
+</div>

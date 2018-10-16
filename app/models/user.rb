@@ -5,7 +5,23 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:username]
 
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :allow_nil => true, :allow_blank => true
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX }, :allow_nil => true, :allow_blank => true
+  validate :some_id_is_blank
+
+  before_create :build_personid
+
+  def some_id_is_blank
+    unless cardid.present? or email.present? or username.present? or full_name.present?
+      errors.add(:cardid, "利用者番号、Eメールアドレス、ログインID、フルネーム　のいずれかを入力してください。")
+    end
+  end
+
+  def build_personid
+    self.personid = SecureRandom.urlsafe_base64(32, true)
+  end
 
   #usernameを利用してログインするようにオーバーライド
   def self.find_first_by_auth_conditions(warden_conditions)
