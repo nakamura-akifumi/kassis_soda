@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>File Adapters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @file_adapters.each do |file_adapter| %>
+      <tr>
+        <td><%= file_adapter.title %></td>
+        <td><%= file_adapter.created_by %></td>
+        <td><%= link_to 'Show', file_adapter %></td>
+        <td><%= link_to 'Edit', edit_file_adapter_path(file_adapter) %></td>
+        <td><%= link_to 'Destroy', file_adapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New File Adapter', new_file_adapter_path %>

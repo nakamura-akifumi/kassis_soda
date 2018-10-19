@@ -30,6 +30,10 @@ brew install redis
 brew install kotlin
 ```
 
+## 開発メモ
+
+RabbitMQ 管理者画面
+http://localhost:15672/
 
 ## 製作者・貢献者 (Authors and contributors)
 - [Akifumi NAKAMURA](https://github.com/nakamura-akifumi) ([@tmpz84](https://twitter.com/tmpz84))

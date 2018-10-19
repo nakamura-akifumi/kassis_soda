@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :holes
+  get 'user_files/new'
+  get 'user_files/index'
+  get 'user_files/show'
+  post 'user_files', to: 'user_files#create'
+  resources :file_adapters
   devise_for :users
   resources :users
   get 'home/index'

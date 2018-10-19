@@ -1,0 +1,7 @@
+default: &default
+  name: kassis_soda
+
+development:
+  <<: *default
+  host: localhost
+  quename: kassis_soda_development

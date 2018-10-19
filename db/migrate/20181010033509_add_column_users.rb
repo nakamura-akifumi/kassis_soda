@@ -9,6 +9,7 @@ class AddColumnUsers < ActiveRecord::Migration[5.2]
     add_column :users, :note, :text
     add_column :users, :number_of_reminder, :integer
     add_column :users, :deactive, :boolean, null: false, default: false
+    add_column :users, :deactive_at, :datetime
 
     add_index :users, :personid, unique: true
     add_index :users, :cardid
