@@ -31,5 +31,7 @@ module KassisSoda
     config.generators.system_tests = nil
 
     config.i18n.default_locale = :ja
+
+    config.colorize_logging = false
   end
 end

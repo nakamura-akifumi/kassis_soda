@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable  :registerable
-  devise :database_authenticatable,
+  devise :ldap_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:username]
 
@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def build_personid
-    self.personid = SecureRandom.urlsafe_base64(32, true)
+    self.personid = SecureRandom.uuid
   end
 
   #usernameを利用してログインするようにオーバーライド
