@@ -18,9 +18,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    random_password = SecureRandom.urlsafe_base64(7)
-    @user.password = random_password
-    logger.info("p=#{random_password}")
+    #random_password = SecureRandom.urlsafe_base64(7)
+    #@user.password = random_password
+    #logger.info("p=#{random_password}")
 
     respond_to do |format|
       if @user.save
@@ -70,6 +70,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :personid, :cardid,
                                  :full_name, :full_name_transcription,
-                                 :expired_at, :registration_date, :note, :deactive)
+                                 :expired_at, :registration_date, :note, :deactive, :password)
   end
 end

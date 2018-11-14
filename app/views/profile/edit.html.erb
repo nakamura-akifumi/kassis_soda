@@ -1,0 +1,18 @@
+<center><div id="result"></div></center>
+<h1>Profile#edit</h1>
+
+<%= @user.username %>
+
+<%= form_with(url: profile_path, id: 'profile_form', validate: true) do |form| %>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, validate: { presence: true } %>
+  </div>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation, validate: { presence: true } %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

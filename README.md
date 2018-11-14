@@ -23,31 +23,35 @@ https://github.com/ryo-utsunomiya/vanilla-autokana
 ## 開発環境構築(Mac OS X)
 
 事前にrbenv、docker、homebrewの導入を済ませてください。
+docker-composeで　OpenLDAP、RabbitMQ、phpldapadmin が対象です。
 
 ```
 rbenv install 2.5.1
 brew install elasticsearch
-brew install rabitmq
 brew install redis
 brew install kotlin
-
-docker pull osixia/openldap
-docker pull postgres:9.6.10
+brew install postgresql@9.6
 ```
 
-https://github.com/osixia/docker-openldap
-
-docker run --name kassis-openldap-container --detach osixia/openldap
-docker start -a kassis-openldap-container
-docker run --name kassis-openldap-container --env LDAP_ORGANISATION="kassis" --env LDAP_DOMAIN="example.com" \
---env LDAP_ADMIN_PASSWORD="kassispassword" --detach osixia/openldap
-
-docker exec kassis-openldap-container ldapsearch -x -H ldap://localhost -b dc=example,dc=com -D "cn=admin,dc=example,dc=com" -w kassispassword
+```
+git pull https://github.com/nakamura-akifumi/kassis_soda.git
+rake db:migrate
+rake db:seed
+cd kassis_soda/ext/docker
+docker-compose up -d
+```
 
 ## 開発メモ
 
 ### OpenLDAP (docker) セットアップ方法
 https://github.com/osixia/docker-openldap
+
+### OpenLDAP (phpldapadmin) 管理画面
+http://localhost:3100
+
+cn=admin,dc=example,dc=com
+kassispassword
+でログイン可能。
 
 ### RabbitMQ 管理者画面
 http://localhost:15672/

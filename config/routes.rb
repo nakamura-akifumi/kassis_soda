@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profile/edit'
+  post 'profile', to: 'profile#update'
   get 'user_files/new'
   get 'user_files/index'
   get 'user_files/show'

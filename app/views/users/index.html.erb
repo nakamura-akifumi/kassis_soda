@@ -19,6 +19,17 @@
               {field: 'full_name_transcription', caption: '氏名カナ', width: 200},
               {field: 'username', caption: 'ログインID', width: 200},
               {field: 'cardid', caption: 'Card ID', width: 200},
+              {field: 'show', width: 80,
+                  columnType: new cheetahGrid.columns.type.ButtonColumn({
+                      caption: '詳細',
+                  }),
+                  action: new cheetahGrid.columns.action.ButtonAction({
+                      action(rec) {
+                          window.location.href = '<%= polymorphic_url :users %>' + '/' + rec.id;
+                          //alert(JSON.stringify(rec));
+                      },
+                  }),
+              }
           ],
           records,
           frozenColCount: 3,
