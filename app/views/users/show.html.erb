@@ -1,0 +1,53 @@
+<div class="container-fluid">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>CardID:</strong>
+  <%= @user.cardid %>
+</p>
+
+<p>
+  <strong>username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>full_name:</strong>
+  <%= @user.full_name %>
+</p>
+
+<p>
+  <strong>full_name_transcription:</strong>
+  <%= @user.full_name_transcription %>
+</p>
+
+<p>
+  <strong>email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>expired_at:</strong>
+  <%= @user.expired_at %>
+</p>
+
+<p>
+  <strong>registration_date:</strong>
+  <%= @user.registration_date %>
+</p>
+
+<p>
+  <strong>deactive:</strong>
+  <%= @user.deactive %>
+</p>
+
+<p>
+  <strong>note:</strong>
+  <%= @user.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+</div>

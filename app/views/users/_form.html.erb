@@ -1,0 +1,73 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      AutoKana.bind("#user_full_name", "#user_full_name_transcription", { katakana: true });
+  });
+</script>
+
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cardid %>
+    <%= form.text_field :cardid, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :full_name_transcription %>
+    <%= form.text_field :full_name_transcription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expired_at %>
+    <%= form.date_field :expired_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :registration_date %>
+    <%= form.date_field :registration_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deactive %>
+    <%= form.check_box :deactive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

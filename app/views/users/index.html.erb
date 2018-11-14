@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    function buildGrid() {
+      $.ajax({
+          type: 'GET',
+          url: "<%= users_path(:format => :json) %>",
+          dataType: 'json'
+      })
+      // Ajaxリクエストが成功した時発動
+      .done((records) => {
+        $("#grid_view").empty();
+        // initialize
+        const grid = new cheetahGrid.ListGrid({
+          parentElement: document.querySelector('#grid_view'),
+          // Header definition
+          header: [
+              {field: 'check', caption: '', width: 50, columnType: 'check', action: 'check'},
+              {field: 'personid', caption: 'PersonID', width: 100, columnType: 'center'},
+              {field: 'full_name', caption: '氏名', width: 200},
+              {field: 'full_name_transcription', caption: '氏名カナ', width: 200},
+              {field: 'username', caption: 'ログインID', width: 200},
+              {field: 'cardid', caption: 'Card ID', width: 200},
+              {field: 'show', width: 80,
+                  columnType: new cheetahGrid.columns.type.ButtonColumn({
+                      caption: '詳細',
+                  }),
+                  action: new cheetahGrid.columns.action.ButtonAction({
+                      action(rec) {
+                          window.location.href = '<%= polymorphic_url :users %>' + '/' + rec.id;
+                          //alert(JSON.stringify(rec));
+                      },
+                  }),
+              }
+          ],
+          records,
+          frozenColCount: 3,
+        });
+        grid_status.innerText = "" + records.length + " レコード";
+      })
+      // Ajaxリクエストが失敗した時発動
+      .fail((data) => {
+        console.log('fail');
+      });
+    }
+
+    $(document).ready(function(){
+        buildGrid();
+    });
+
+</script>
+
+<div class="container-fluid">
+  <div id="grid_view" style="height: 400px; border: solid 1px #ddd;">
+  </div>
+  <div id="grid_status" style="height: 30px; background-color: #DDDDDD">
+  </div>
+
+  <%= link_to "利用者新規作成", new_user_path, {class: "btn btn-primary"} %>
+  <%= link_to "利用者情報ファイル取込", user_files_new_path, {class: "btn btn-primary"} %>
+</div>
+

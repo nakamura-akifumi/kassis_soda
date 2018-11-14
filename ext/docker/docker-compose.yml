@@ -1,0 +1,34 @@
+version: '3'
+services:
+  openldap:
+    image: osixia/openldap:1.2.2
+    container_name: kassis-ldap
+    environment:
+      LDAP_ORGANISATION: "kassis"
+      LDAP_DOMAIN: "example.com"
+      LDAP_ADMIN_PASSWORD: "kassispassword"
+    ports:
+    - "389:389"
+    command: --copy-service
+    volumes:
+    #- "./storage/ldapStorage:/var/lib/ldap"
+    - "./openldap/config/ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom"
+  ldapadmin:
+    image: osixia/phpldapadmin:0.7.2
+    container_name: kassis-ldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+    - "3100:80"
+    links:
+    - "openldap:ldap"
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: kassis-rabbitmq
+    ports:
+    - "15672:15672"
+    - "5672:5672"
+
+volumes:
+  ldapStorage:
