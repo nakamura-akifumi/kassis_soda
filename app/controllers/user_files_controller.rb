@@ -13,7 +13,7 @@ class UserFilesController < ApplicationController
 
     @message_adapter.msgid = SecureRandom.uuid
     @message_adapter.created_by = current_user.id
-    @message_adapter.status = 'set' # set -> accepted -> processing -> processed
+    @message_adapter.status = 'set' # set -> (accepted) -> processing -> processed
     @message_adapter.state = 'normal' # normal -> error or sucess
 
     if @message_adapter.save
@@ -43,6 +43,8 @@ class UserFilesController < ApplicationController
   end
 
   def show
+    @message_adapter = MessageAdapter.find(params['id'])
+    @message_histories = MessageHistory.where(msgid: @message_adapter.msgid)
   end
 
   private

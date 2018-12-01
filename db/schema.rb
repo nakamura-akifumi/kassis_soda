@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_124132) do
+ActiveRecord::Schema.define(version: 2018_11_24_135821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2018_10_17_124132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["msgid"], name: "index_message_adapters_on_msgid", unique: true
+  end
+
+  create_table "message_histories", force: :cascade do |t|
+    t.string "msgid"
+    t.string "row"
+    t.string "message_type"
+    t.string "status"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msgid", "row"], name: "index_message_histories_on_msgid_and_row"
   end
 
   create_table "user_contacts", force: :cascade do |t|

@@ -1,2 +1,18 @@
 <h1>UserFiles#show</h1>
 <p>Find me in app/views/user_files/show.html.erb</p>
+
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+    <p class="card-text" id="file_status"> </p>
+  </div>
+</div>
+
+<% @message_histories.each do |h| %>
+  <%= h.row %>
+  <%= h.message_type %>
+  <%= h.status %>
+  <%= h.note %>
+  <%= h.created_at %>
+  <%= h.updated_at %>
+
+<% end %>

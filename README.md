@@ -23,13 +23,14 @@ https://github.com/ryo-utsunomiya/vanilla-autokana
 ## 開発環境構築(Mac OS X)
 
 事前にrbenv、docker、homebrewの導入を済ませてください。
-docker-composeで　OpenLDAP、RabbitMQ、phpldapadmin が対象です。
+docker-composeで　OpenLDAP、RabbitMQ、phpldapadmin がインストールされます。
 
 ```
 rbenv install 2.5.1
 brew install elasticsearch
 brew install redis
 brew install kotlin
+brew install node
 brew install postgresql@9.6
 ```
 
