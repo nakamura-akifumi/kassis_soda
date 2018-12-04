@@ -32,7 +32,7 @@ class UserFilesController < ApplicationController
       queue = channel.queue(rabbitmq_quename)
       queue.publish(message, persistent: true)
       connection.close
-      logger.info " [x] Sent #{message}"
+      logger.info " [x] Sent Message q:#{rabbitmq_quename} m:#{message}"
       redirect_to user_files_show_path(@message_adapter.id), notice: 'Message adapter was successfully created.'
     else
       render :new

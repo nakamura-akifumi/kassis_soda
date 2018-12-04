@@ -13,14 +13,15 @@ class MessageAdapter < ApplicationRecord
     conn.start
 
     channel = conn.create_channel
-    exchange = channel.topic("messageExchange", :auto_delete => true)
+    exchange = channel.topic("messageExchange")
 
     channel.queue('', :exclusive => true)
         .bind(exchange, :routing_key => "kassis.file.replay_messages.#").subscribe do |delivery_info, metadata, payload|
 
       logger.debug "ReplyMessage: #{payload}, routing key is #{delivery_info.routing_key}"
 
-      ActionCable.server.broadcast('progresses:1', msg: "#{payload.msg}")
+      x = JSON.parse(payload)
+      ActionCable.server.broadcast('progresses:1', msg: x['msg'])
     end
   end
 

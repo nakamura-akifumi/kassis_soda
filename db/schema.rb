@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_135821) do
     t.string "message_type"
     t.string "status"
     t.text "note"
+    t.text "note2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["msgid", "row"], name: "index_message_histories_on_msgid_and_row"
