@@ -1,0 +1,15 @@
+<script type="text/javascript">
+function breadcrumbs() {
+  $("#breadcrumbs").text("利用者情報出力")
+}
+breadcrumbs();
+</script>
+
+<div class="container-fluid">
+<%= form_with url: user_files_export_path, local: true do |form| %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

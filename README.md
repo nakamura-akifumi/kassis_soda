@@ -6,9 +6,9 @@
 
 - Linux か Mac OS X
 - Ruby 2.5
-- Elasticsearch 6.4
+- Elasticsearch 6.x
 - RabbitMQ 3.7
-- PostgreSQL 9
+- PostgreSQL 10.x
 - Redis
 - OpenLDAP 2.4.46
 - kassis_fileprocessor
@@ -31,7 +31,6 @@ brew install elasticsearch
 brew install redis
 brew install kotlin
 brew install node
-brew install postgresql@9.6
 ```
 
 ```

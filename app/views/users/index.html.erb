@@ -1,4 +1,7 @@
 <script type="text/javascript">
+    function breadcrumbs() {
+        $("#breadcrumbs").text("利用者一覧")
+    }
     function buildGrid() {
       $.ajax({
           type: 'GET',
@@ -43,6 +46,7 @@
     }
 
     $(document).ready(function(){
+        breadcrumbs();
         buildGrid();
     });
 
@@ -55,6 +59,12 @@
   </div>
 
   <%= link_to "利用者新規作成", new_user_path, {class: "btn btn-primary"} %>
-  <%= link_to "利用者情報ファイル取込", user_files_new_path, {class: "btn btn-primary"} %>
+  <%= link_to user_files_new_path, {class: "btn btn-primary"} do %>
+    <i class="fas fa-upload"></i> ファイル取込
+  <% end %>
+  <%= link_to user_files_export_new_path, {class: "btn btn-primary"} do %>
+    <i class="fas fa-download"></i> ファイル出力
+  <% end %>
+
 </div>
 

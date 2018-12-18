@@ -12,7 +12,6 @@ App.progress = App.cable.subscriptions.create "ProgressChannel",
     $('#file_status').text("#{data.msg}")
 
   follow: ->
-    # 例示のため、購読対象の識別子 (progress_id) は決め打ち
     @perform('follow', progress_id: 1)
 
   install: ->

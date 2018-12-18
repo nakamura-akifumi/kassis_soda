@@ -29,6 +29,16 @@ services:
     ports:
     - "15672:15672"
     - "5672:5672"
+  postgresql:
+    image: postgres:11
+    container_name: kassis-db
+    ports:
+      - "5432:5432"
+    restart: always
+#    volumes:
+#      - ./socket/postgresql.s.PGSQL.5432:/var/run/postgresql/.s.PGSQL.5432
+    environment:
+      POSTGRES_PASSWORD: postgres
 
 volumes:
   ldapStorage:

@@ -18,4 +18,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-btn btn-primary a:hover, a:visited { color:white   !important; }
+a.btn:hover, a.btn:visited { color:white   !important; }
+
+.navbar-text { color: white !important; font-size: 18pt !important; }

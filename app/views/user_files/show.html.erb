@@ -7,12 +7,34 @@
   </div>
 </div>
 
+<%= @message_adapter.msgid %> <br />
+<%= @message_adapter.message_type %> <br />
+<%= @message_adapter.status %> <br />
+<%= @message_adapter.state %> <br />
+<%= @message_adapter.created_by %> <br />
+<%= @message_adapter.created_at %> <br />
+
+<hr />
+
 <% @message_histories.each do |h| %>
-  <%= h.row %>
   <%= h.message_type %>
   <%= h.status %>
   <%= h.note %>
-  <%= h.created_at %>
   <%= h.updated_at %>
+  <br />
+<% end %>
+
+<hr />
+
+<% @message_attachments.each do |h| %>
+  <%= h.msgid %> <br />
+  <%= h.fileid %> <br />
+  <%= h.filename %> <br />
+  <%= h.byte_size %> <br />
+  <%= h.checksum %> <br />
+  <%= h.created_at %> <br />
+
+  <%= link_to h.filename, user_files_attachment_path(h.id) %>
 
 <% end %>
+

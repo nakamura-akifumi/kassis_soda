@@ -1,0 +1,3 @@
+class KassisFileAttachment < ApplicationRecord
+
+end

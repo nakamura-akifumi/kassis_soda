@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_24_135821) do
+ActiveRecord::Schema.define(version: 2018_12_11_100123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2018_11_24_135821) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "kassis_file_attachments", force: :cascade do |t|
+    t.string "msgid"
+    t.string "fileid"
+    t.string "filename"
+    t.bigint "byte_size"
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["msgid", "fileid"], name: "index_kassis_file_attachments_on_msgid_and_fileid"
   end
 
   create_table "message_adapters", force: :cascade do |t|
@@ -93,7 +104,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_135821) do
     t.integer "number_of_reminder"
     t.boolean "deactive", default: false, null: false
     t.datetime "deactive_at"
-    t.index ["cardid"], name: "index_users_on_cardid"
+    t.index ["cardid"], name: "index_users_on_cardid", unique: true
     t.index ["deactive"], name: "index_users_on_deactive"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["personid"], name: "index_users_on_personid", unique: true
