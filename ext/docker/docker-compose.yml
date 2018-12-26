@@ -39,6 +39,33 @@ services:
 #      - ./socket/postgresql.s.PGSQL.5432:/var/run/postgresql/.s.PGSQL.5432
     environment:
       POSTGRES_PASSWORD: postgres
-
+  es:
+    container_name: es
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    build:
+      context: .
+      dockerfile: ./dockerfiles/elasticsearch/Dockerfile
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    container_name: es-kibana
+    environment:
+      SERVER_NAME: localhost:5601
+      ELASTICSEARCH_URL: http://es:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - es
 volumes:
-  ldapStorage:
+  esdata1:
+    driver: local
