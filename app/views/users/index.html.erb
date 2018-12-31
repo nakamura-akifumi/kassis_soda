@@ -1,11 +1,15 @@
 <script type="text/javascript">
+
+
     function breadcrumbs() {
         $("#breadcrumbs").text("利用者一覧")
     }
-    function buildGrid() {
+    function buildGrid(params) {
+      var baseurl = "<%= users_path(:format => :json) %>";
+      var url = baseurl + "?" + QueryString.stringify(params, null, null, true)
       $.ajax({
           type: 'GET',
-          url: "<%= users_path(:format => :json) %>",
+          url: url,
           dataType: 'json'
       })
       // Ajaxリクエストが成功した時発動
@@ -16,12 +20,23 @@
           parentElement: document.querySelector('#grid_view'),
           // Header definition
           header: [
-              {field: 'check', caption: '', width: 50, columnType: 'check', action: 'check'},
-              {field: 'personid', caption: 'PersonID', width: 100, columnType: 'center'},
-              {field: 'full_name', caption: '氏名', width: 200},
-              {field: 'full_name_transcription', caption: '氏名カナ', width: 200},
-              {field: 'username', caption: 'ログインID', width: 200},
-              {field: 'cardid', caption: 'Card ID', width: 200},
+              {field: 'check', caption: '', width: 50, columnType: 'check', action: 'check',
+                  headerStyle: {bgColor: '#ccc'}},
+              {field: 'personid', caption: 'PersonID', width: 100, columnType: 'center',
+                  style: {font: '11px sans-serif'},
+                  headerStyle: {bgColor: '#ccc', color: 'black', font: '11px sans-serif'}},
+              {field: 'full_name', caption: '氏名', width: 120,
+                  style: {font: '11px sans-serif', padding: [3/*top*/, 5/*right*/, 3/*bottom*/, 8/*left*/]},
+                  headerStyle: {bgColor: '#ccc', color: 'black', font: '11px sans-serif'}},
+              {field: 'full_name_transcription', caption: '氏名ヨミ', width: 140,
+                  style: {font: '11px sans-serif'},
+                  headerStyle: {bgColor: '#ccc', color: 'black', font: '11px sans-serif'}},
+              {field: 'username', caption: 'ログインID', width: 120,
+                  style: {font: '11px sans-serif'},
+                  headerStyle: {bgColor: '#ccc', color: 'black', font: '11px sans-serif'}},
+              {field: 'cardid', caption: 'Card ID', width: 120,
+                  style: {font: '11px sans-serif'},
+                  headerStyle: {bgColor: '#ccc', color: 'black', font: '11px sans-serif'}},
               {field: 'show', width: 80,
                   columnType: new cheetahGrid.columns.type.ButtonColumn({
                       caption: '詳細',
@@ -29,11 +44,13 @@
                   action: new cheetahGrid.columns.action.ButtonAction({
                       action(rec) {
                           window.location.href = '<%= polymorphic_url :users %>' + '/' + rec.id;
-                          //alert(JSON.stringify(rec));
                       },
                   }),
+                  headerStyle: {bgColor: '#ccc', color: 'black'},
               }
           ],
+          defaultRowHeight: 24,
+          headerRowHeight: 24,
           records,
           frozenColCount: 3,
         });
@@ -47,12 +64,33 @@
 
     $(document).ready(function(){
         breadcrumbs();
-        buildGrid();
+        buildGrid("");
+
+      $('#submit_button').click(function(){
+          var serialize = $('#user_search_form').serializeArray();
+          var params = {};
+          // 配列 -> 連想配列に
+          for (idx in serialize) {
+              var key   = serialize[idx]["name"];
+              var value = serialize[idx]["value"];
+              params[key] = value;
+          }
+          buildGrid(params);
+          return false;
+      });
     });
 
 </script>
 
 <div class="container-fluid">
+  <div id="search-field" style="padding-bottom: 5px">
+
+    <form id="user_search_form" action="/users" accept-charset="UTF-8" method="get">
+      <input autosave="false" onsearch="true" incremental="true" type="search" name="q" id="user_search_form_q" />
+      <button type="submit" id="submit_button">検索</button>
+    </form>
+  </div>
+
   <div id="grid_view" style="height: 400px; border: solid 1px #ddd;">
   </div>
   <div id="grid_status" style="height: 30px; background-color: #DDDDDD">

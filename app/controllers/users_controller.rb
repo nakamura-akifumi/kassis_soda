@@ -6,7 +6,17 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        @users = User.select(:username, :full_name, :full_name_transcription, :cardid, :personid, :id)
+        query = ""
+        if params[:q].present?
+          query = params[:q]
+        end
+        response = User.search(query)
+        # TODO: DBを再取得したくない
+        # TODO: データを絞りたい
+        @users = response.results.map { |r| r._source }
+
+        logger.info "total result: #{response.records.total}"
+
         render json: @users
       end
     end
