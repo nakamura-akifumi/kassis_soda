@@ -151,6 +151,7 @@ class User < ApplicationRecord
     end
   end
 
+  # TODO: 別のコードにリファクタリング
   def create_ldap
     unless username.present?
       logger.info "username is blank. skip create ldap"
@@ -220,4 +221,5 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+
 end

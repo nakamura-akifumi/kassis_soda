@@ -13,7 +13,8 @@
           dataType: 'json'
       })
       // Ajaxリクエストが成功した時発動
-      .done((records) => {
+      .done((results) => {
+        var records = results.records;
         $("#grid_view").empty();
         // initialize
         const grid = new cheetahGrid.ListGrid({
@@ -43,7 +44,7 @@
                   }),
                   action: new cheetahGrid.columns.action.ButtonAction({
                       action(rec) {
-                          window.location.href = '<%= polymorphic_url :users %>' + '/' + rec.id;
+                          window.location.href = '<%= polymorphic_url :users %>' + '/' + rec.user_id;
                       },
                   }),
                   headerStyle: {bgColor: '#ccc', color: 'black'},
@@ -54,7 +55,7 @@
           records,
           frozenColCount: 3,
         });
-        grid_status.innerText = "" + records.length + " レコード";
+        grid_status.innerText = "" + records.length + " レコード / 全件 " + results.total_records + " レコード";
       })
       // Ajaxリクエストが失敗した時発動
       .fail((data) => {

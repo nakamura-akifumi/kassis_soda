@@ -71,3 +71,5 @@ gem 'bunny', '~> 2.6.4'
 
 gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
 gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
+gem 'elasticsearch-dsl'
+gem 'kaminari'

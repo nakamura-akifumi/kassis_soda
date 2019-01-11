@@ -6,18 +6,20 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        query = ""
+        query = '*'
         if params[:q].present?
           query = params[:q]
         end
-        response = User.search(query)
-        # TODO: DBを再取得したくない
-        # TODO: データを絞りたい
-        @users = response.results.map { |r| r._source }
+
+        # TODO: 表示できる最大件数の定義をどこかでする
+        response = User.search(query).page(1).per(5000)
+
+        total_records = response.records.total
+        users = response.results.map { |r| r._source }
 
         logger.info "total result: #{response.records.total}"
 
-        render json: @users
+        render json: {records: users, total_records: total_records}
       end
     end
   end
