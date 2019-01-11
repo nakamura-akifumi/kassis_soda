@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:username]
 
+  include UserSearchable
+
   validates_uniqueness_of :username, :allow_nil => true, :allow_blank => true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -149,6 +151,7 @@ class User < ApplicationRecord
     end
   end
 
+  # TODO: 別のコードにリファクタリング
   def create_ldap
     unless username.present?
       logger.info "username is blank. skip create ldap"
@@ -218,4 +221,5 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+
 end

@@ -6,9 +6,9 @@
 
 - Linux か Mac OS X
 - Ruby 2.5
-- Elasticsearch 6.4
+- Elasticsearch 6.x
 - RabbitMQ 3.7
-- PostgreSQL 9
+- PostgreSQL 10.x
 - Redis
 - OpenLDAP 2.4.46
 - kassis_fileprocessor
@@ -23,14 +23,14 @@ https://github.com/ryo-utsunomiya/vanilla-autokana
 ## 開発環境構築(Mac OS X)
 
 事前にrbenv、docker、homebrewの導入を済ませてください。
-docker-composeで　OpenLDAP、RabbitMQ、phpldapadmin が対象です。
+docker-composeで　OpenLDAP、RabbitMQ、phpldapadmin がインストールされます。
 
 ```
 rbenv install 2.5.1
 brew install elasticsearch
 brew install redis
 brew install kotlin
-brew install postgresql@9.6
+brew install node
 ```
 
 ```

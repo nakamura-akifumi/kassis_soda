@@ -9,3 +9,4 @@ def load_config(key, filepath)
 end
 
 load_config(:rabbitmq, Rails.root.join('config', 'rabbitmq.yml'))
+load_config(:kassis, Rails.root.join('config', 'kassis.yml'))

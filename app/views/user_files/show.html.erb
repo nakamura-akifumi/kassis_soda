@@ -1,2 +1,40 @@
 <h1>UserFiles#show</h1>
 <p>Find me in app/views/user_files/show.html.erb</p>
+
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+    <p class="card-text" id="file_status"> </p>
+  </div>
+</div>
+
+<%= @message_adapter.msgid %> <br />
+<%= @message_adapter.message_type %> <br />
+<%= @message_adapter.status %> <br />
+<%= @message_adapter.state %> <br />
+<%= @message_adapter.created_by %> <br />
+<%= @message_adapter.created_at %> <br />
+
+<hr />
+
+<% @message_histories.each do |h| %>
+  <%= h.message_type %>
+  <%= h.status %>
+  <%= h.note %>
+  <%= h.updated_at %>
+  <br />
+<% end %>
+
+<hr />
+
+<% @message_attachments.each do |h| %>
+  <%= h.msgid %> <br />
+  <%= h.fileid %> <br />
+  <%= h.filename %> <br />
+  <%= h.byte_size %> <br />
+  <%= h.checksum %> <br />
+  <%= h.created_at %> <br />
+
+  <%= link_to h.filename, user_files_attachment_path(h.id) %>
+
+<% end %>
+

@@ -68,3 +68,8 @@ gem 'jquery-rails'
 gem 'font-awesome-sass',  '~> 5.2.0'
 
 gem 'bunny', '~> 2.6.4'
+
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
+gem 'elasticsearch-dsl'
+gem 'kaminari'
